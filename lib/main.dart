@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Purge Arioflow',
+      title: 'Twinder',
       theme: darkTheme,
       initialRoute: '/',
       onGenerateRoute: RouteGenerator.generateRoute,
