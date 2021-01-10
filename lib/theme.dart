@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 // Couleurs Material
-final Color primaryColor = Colors.pink;
-final Color secondaryColor = Colors.deepPurple;
+final Color primaryColor = Colors.pinkAccent;
+final Color secondaryColor = Colors.deepPurpleAccent;
 
 // Couleurs Mockup 
 // final Color primaryColor = Color(0xFFE01B84);
