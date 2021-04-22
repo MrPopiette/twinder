@@ -2,8 +2,9 @@
 // https://resocoder.com/2019/04/27/flutter-routes-navigation-parameters-named-routes-ongenerateroute/
 
 import 'package:flutter/material.dart';
-import 'package:twinder/views/login.dart';
-import 'package:twinder/views/timeline.dart';
+import 'package:twinder/ui/views/login.dart';
+import 'package:twinder/ui/views/register.dart';
+import 'package:twinder/ui/views/timeline.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -14,11 +15,14 @@ class RouteGenerator {
       //Route Login
       case '/':
         return MaterialPageRoute(builder: (_) => LoginView());
+      //Route Register
+      case '/register':
+        return MaterialPageRoute(builder: (_) => RegisterView());
       //Route Timeline
       case '/timeline':
         return MaterialPageRoute(builder: (_) => TimelineView(data: args));
       // Pas de route dans le switch statement
-      default: 
+      default:
         return _errorRoute();
     }
   }
