@@ -1,26 +1,54 @@
 import 'package:flutter/material.dart';
+import 'package:twinder/ui/components/common/drawer_menu.dart';
 
 class TimelineView extends StatelessWidget {
   final String data;
 
   TimelineView({
     Key key,
-    @required this.data,
+    this.data,
   }) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Align(
+  Widget _buildTimelineContent() {
+    return Container(
+      child: Align(
         alignment: Alignment.center,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text("Timeline Screen"),
-            Text(data),
-          ], 
+            Text("$data"),
+          ],
         ),
       ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Timeline"),
+        actions: [
+          IconButton(
+              icon: Icon(Icons.search),
+              onPressed: () {
+                Navigator.of(context).pushNamed('/search');
+              }),
+          IconButton(
+              icon: Icon(Icons.notifications_outlined),
+              onPressed: () {
+                Navigator.of(context).pushNamed('/notifications');
+              }),
+          IconButton(
+              icon: Icon(Icons.more_vert),
+              onPressed: () {
+                Navigator.of(context).pushNamed('/new_post');
+              }),
+        ],
+      ),
+      drawer: DrawerMenu(),
+      body: _buildTimelineContent(),
     );
   }
 }

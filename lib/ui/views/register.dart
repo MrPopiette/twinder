@@ -15,7 +15,7 @@ class RegisterView extends StatelessWidget {
         alignment: Alignment.center,
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/images/loginBackgroundPurple.png'),
+            image: AssetImage('assets/images/loginBackgroundPink.png'),
             fit: BoxFit.cover,
           ),
         ),
