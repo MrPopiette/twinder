@@ -6,7 +6,7 @@ enum FormType { login, register }
 
 class AuthForm extends StatefulWidget {
   const AuthForm({
-    @required this.type,
+    required this.type,
   });
 
   final FormType type;
@@ -70,7 +70,7 @@ class AuthFormState extends State<AuthForm> {
                 primary: Colors.pinkAccent, padding: EdgeInsets.all(16), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0))),
             onPressed: () {
               // Validate returns true if the form is valid, or false otherwise.
-              if (_formKey.currentState.validate()) {
+              if (_formKey.currentState!.validate()) {
                 // If the form is valid, display a snackbar. In the real world,
                 // you'd often call a server or save the information in a database.
                 // ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Processing Data')));
@@ -161,7 +161,7 @@ class AuthFormState extends State<AuthForm> {
                 primary: Colors.deepPurpleAccent, padding: EdgeInsets.all(16), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0))),
             onPressed: () {
               // Validate returns true if the form is valid, or false otherwise.
-              if (_formKey.currentState.validate()) {
+              if (_formKey.currentState!.validate()) {
                 // If the form is valid, display a snackbar. In the real world,
                 // you'd often call a server or save the information in a database.
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Inscription réussi, veuillez vous connecter.')));

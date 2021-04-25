@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:twinder/ui/components/common/drawer_menu.dart';
+import 'package:twinder/ui/components/drawer_menu.dart';
 
 class TimelineView extends StatelessWidget {
-  final String data;
+  final String? data;
 
   TimelineView({
-    Key key,
+    Key? key,
     this.data,
   }) : super(key: key);
 

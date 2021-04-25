@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:twinder/ui/components/common/auth_form.dart';
+import 'package:twinder/ui/components/auth_form.dart';
 
 class RegisterView extends StatelessWidget {
   @override
