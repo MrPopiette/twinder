@@ -31,24 +31,33 @@ class TimelineView extends StatelessWidget {
         title: Text("Timeline"),
         actions: [
           IconButton(
-              icon: Icon(Icons.search),
-              onPressed: () {
-                Navigator.of(context).pushNamed('/search');
-              }),
+            icon: Icon(Icons.search),
+            onPressed: () {
+              Navigator.of(context).pushNamed('/search');
+            },
+          ),
           IconButton(
-              icon: Icon(Icons.notifications_outlined),
-              onPressed: () {
-                Navigator.of(context).pushNamed('/notifications');
-              }),
+            icon: Icon(Icons.notifications_outlined),
+            onPressed: null,
+            // onPressed: () {
+            //   Navigator.of(context).pushNamed('/notifications');
+            // },
+          ),
           IconButton(
-              icon: Icon(Icons.more_vert),
-              onPressed: () {
-                Navigator.of(context).pushNamed('/new_post');
-              }),
+            icon: Icon(Icons.more_vert),
+            onPressed: null,
+          ),
         ],
       ),
       drawer: DrawerMenu(),
       body: _buildTimelineContent(),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.edit),
+        onPressed: () {
+          Navigator.of(context).pushNamed('/new_post');
+        },
+        backgroundColor: Colors.deepPurpleAccent,
+      ),
     );
   }
 }

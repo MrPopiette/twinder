@@ -39,11 +39,11 @@ class DrawerMenu extends StatelessWidget {
           ListTile(
             leading: Icon(
               Icons.compass_calibration,
-              color: Colors.pinkAccent,
+              color: Colors.deepPurpleAccent,
             ),
             title: Text(
               'Timeline',
-              style: TextStyle(color: Colors.pinkAccent),
+              style: TextStyle(color: Colors.deepPurpleAccent),
             ),
             onTap: () {
               Navigator.of(context).pushNamed('/timeline');
@@ -52,15 +52,16 @@ class DrawerMenu extends StatelessWidget {
           ListTile(
             leading: Icon(
               Icons.message,
-              color: Colors.deepPurpleAccent,
+              color: Colors.pinkAccent,
             ),
             title: Text(
               'Messages',
-              style: TextStyle(color: Colors.deepPurpleAccent),
+              style: TextStyle(color: Colors.pinkAccent),
             ),
             onTap: () {
               Navigator.of(context).pushNamed('/messages');
             },
+            enabled: false,
           ),
           Divider(),
           ListTile(
@@ -76,6 +77,7 @@ class DrawerMenu extends StatelessWidget {
             onTap: () {
               Navigator.of(context).pushNamed('/settings');
             },
+            enabled: false,
           ),
           ListTile(
             leading: Icon(Icons.exit_to_app_outlined),
