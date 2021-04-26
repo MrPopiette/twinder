@@ -2,9 +2,10 @@
 // https://resocoder.com/2019/04/27/flutter-routes-navigation-parameters-named-routes-ongenerateroute/
 
 import 'package:flutter/material.dart';
-import 'package:twinder/ui/views/login.dart';
-import 'package:twinder/ui/views/register.dart';
-import 'package:twinder/ui/views/timeline.dart';
+import 'package:twinder/ui/views/login_view.dart';
+import 'package:twinder/ui/views/new_post_view.dart';
+import 'package:twinder/ui/views/register_view.dart';
+import 'package:twinder/ui/views/timeline_view.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -44,7 +45,7 @@ class RouteGenerator {
         return _notImplementedRoute("Notifications");
       //Route New post
       case '/new_post':
-        return _notImplementedRoute("Nouveau post");
+        return MaterialPageRoute(builder: (_) => NewPostView(data: args.toString()));
 
       // Pas de route dans le switch statement
       default:
