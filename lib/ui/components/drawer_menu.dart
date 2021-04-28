@@ -61,7 +61,6 @@ class DrawerMenu extends StatelessWidget {
             onTap: () {
               Navigator.of(context).pushNamed('/messages');
             },
-            enabled: false,
           ),
           Divider(),
           ListTile(

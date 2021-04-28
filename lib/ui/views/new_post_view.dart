@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:twinder/ui/components/drawer_menu.dart';
 
 class NewPostView extends StatelessWidget {
-  final String? data;
-
   NewPostView({
     Key? key,
-    this.data,
   }) : super(key: key);
 
   Widget _buildNewPostContent() {
@@ -19,6 +15,46 @@ class NewPostView extends StatelessWidget {
         autofocus: true,
         keyboardType: TextInputType.multiline,
         maxLines: null,
+      ),
+    );
+  }
+
+  Widget _buildBottomActions() {
+    return Container(
+      height: 64,
+      color: Colors.black26,
+      child: Row(
+        children: [
+          Padding(
+            padding: EdgeInsets.fromLTRB(8, 0, 4, 0),
+            child: IconButton(
+              icon: Icon(Icons.image),
+              onPressed: () {},
+              color: Colors.grey[300],
+              iconSize: 28,
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.fromLTRB(4, 0, 4, 0),
+            child: IconButton(
+              icon: Icon(Icons.map),
+              onPressed: null,
+              color: Colors.grey[300],
+              iconSize: 28,
+              enableFeedback: false,
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.fromLTRB(4, 0, 4, 0),
+            child: IconButton(
+              icon: Icon(Icons.gif),
+              onPressed: null,
+              color: Colors.grey[300],
+              iconSize: 28,
+              enableFeedback: false,
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -43,41 +79,7 @@ class NewPostView extends StatelessWidget {
         ],
       ),
       body: _buildNewPostContent(),
-      bottomSheet: Container(
-        height: 64,
-        color: Colors.black26,
-        child: Row(
-          children: [
-            Padding(
-              padding: EdgeInsets.fromLTRB(8, 0, 4, 0),
-              child: IconButton(
-                icon: Icon(Icons.image),
-                onPressed: () {},
-                color: Colors.grey[300],
-                iconSize: 28,
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.fromLTRB(4, 0, 4, 0),
-              child: IconButton(
-                icon: Icon(Icons.map),
-                onPressed: () {},
-                color: Colors.grey[800],
-                iconSize: 28,
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.fromLTRB(4, 0, 4, 0),
-              child: IconButton(
-                icon: Icon(Icons.gif),
-                onPressed: () {},
-                color: Colors.grey[800],
-                iconSize: 28,
-              ),
-            ),
-          ],
-        ),
-      ),
+      bottomSheet: _buildBottomActions(),
     );
   }
 }

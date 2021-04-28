@@ -4,6 +4,7 @@
 import 'package:flutter/material.dart';
 import 'package:twinder/ui/views/login_view.dart';
 import 'package:twinder/ui/views/new_post_view.dart';
+import 'package:twinder/ui/views/profile_view.dart';
 import 'package:twinder/ui/views/register_view.dart';
 import 'package:twinder/ui/views/timeline_view.dart';
 
@@ -30,7 +31,7 @@ class RouteGenerator {
         return _notImplementedRoute("Messages");
       //Route Profile
       case '/profile':
-        return _notImplementedRoute("Profil");
+        return MaterialPageRoute(builder: (_) => ProfileView());
       //Route Settings
       case '/settings':
         return _notImplementedRoute("Paramètres");
@@ -45,7 +46,7 @@ class RouteGenerator {
         return _notImplementedRoute("Notifications");
       //Route New post
       case '/new_post':
-        return MaterialPageRoute(builder: (_) => NewPostView(data: args.toString()));
+        return MaterialPageRoute(builder: (_) => NewPostView());
 
       // Pas de route dans le switch statement
       default:
