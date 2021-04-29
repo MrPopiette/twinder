@@ -18,10 +18,15 @@ class TimelineView extends StatelessWidget {
           children: <Widget>[
             Text("Timeline Screen"),
             Text("$data"),
+            _buildPost(),
           ],
         ),
       ),
     );
+  }
+
+  Widget _buildPost() {
+    return Container();
   }
 
   @override

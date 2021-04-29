@@ -6,6 +6,7 @@ import 'package:twinder/ui/views/login_view.dart';
 import 'package:twinder/ui/views/new_post_view.dart';
 import 'package:twinder/ui/views/profile_view.dart';
 import 'package:twinder/ui/views/register_view.dart';
+import 'package:twinder/ui/views/search_view.dart';
 import 'package:twinder/ui/views/timeline_view.dart';
 
 class RouteGenerator {
@@ -40,7 +41,7 @@ class RouteGenerator {
 
       //Route Search
       case '/search':
-        return _notImplementedRoute("Rechercher");
+        return MaterialPageRoute(builder: (_) => SearchView());
       //Route Notifications
       case '/notifications':
         return _notImplementedRoute("Notifications");
