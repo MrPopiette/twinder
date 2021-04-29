@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
+import 'package:flutter_session/flutter_session.dart';
 import 'package:intl/intl.dart';
 import 'package:twinder/models/user.dart';
 import 'package:twinder/network/auth_network.dart';
 import 'package:visibility_detector/visibility_detector.dart';
+
+import 'package:twinder/globals.dart' as globals;
 
 enum FormType { login, register }
 
@@ -128,6 +131,8 @@ class AuthFormState extends State<AuthForm> {
     _userFuture = authLogin(emailController.text, passwordController.text);
     setState(() {});
     if (user != null) {
+      globals.loggedUser = user;
+
       await Navigator.of(context).pushNamed(
         '/timeline',
         arguments: "Passage d'argument",

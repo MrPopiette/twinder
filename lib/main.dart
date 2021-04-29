@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:twinder/globals.dart' as globals;
 
 // import 'package:twinder/const.dart';
 import 'package:twinder/theme.dart';

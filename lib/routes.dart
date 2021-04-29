@@ -26,7 +26,7 @@ class RouteGenerator {
 
       //Route Timeline
       case '/timeline':
-        return MaterialPageRoute(builder: (_) => TimelineView(data: args.toString()));
+        return MaterialPageRoute(builder: (_) => TimelineView());
       //Route Messages
       case '/messages':
         return _notImplementedRoute("Messages");

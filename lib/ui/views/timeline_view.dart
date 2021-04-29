@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_session/flutter_session.dart';
 import 'package:twinder/ui/components/drawer_menu.dart';
 
-class TimelineView extends StatelessWidget {
-  final String? data;
+import 'package:twinder/globals.dart' as globals;
 
+class TimelineView extends StatelessWidget {
   TimelineView({
     Key? key,
-    this.data,
   }) : super(key: key);
 
   Widget _buildTimelineContent() {
+    var idUser = globals.loggedUser!.idUser;
+
     return Container(
       child: Align(
         alignment: Alignment.center,
@@ -17,7 +19,7 @@ class TimelineView extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text("Timeline Screen"),
-            Text("$data"),
+            Text("$idUser"),
             _buildPost(),
           ],
         ),
