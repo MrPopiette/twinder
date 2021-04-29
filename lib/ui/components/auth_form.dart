@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:intl/intl.dart';
+import 'package:twinder/models/user.dart';
+import 'package:twinder/network/auth_network.dart';
+import 'package:visibility_detector/visibility_detector.dart';
 
 enum FormType { login, register }
 
@@ -18,7 +21,12 @@ class AuthForm extends StatefulWidget {
 }
 
 class AuthFormState extends State<AuthForm> {
+  Future<User>? _userFuture;
+  User? user;
+
   final _formKey = GlobalKey<FormState>();
+  TextEditingController emailController = new TextEditingController();
+  TextEditingController passwordController = new TextEditingController();
 
   InputDecoration _buildInputDecoration(String hintText) {
     return InputDecoration(
@@ -43,6 +51,7 @@ class AuthFormState extends State<AuthForm> {
           Padding(
               padding: EdgeInsets.only(bottom: 24),
               child: TextFormField(
+                controller: emailController,
                 decoration: _buildInputDecoration("Email"),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -54,6 +63,7 @@ class AuthFormState extends State<AuthForm> {
           Padding(
               padding: EdgeInsets.only(bottom: 24),
               child: TextFormField(
+                controller: passwordController,
                 decoration: _buildInputDecoration("Mot de passe"),
                 enableSuggestions: false,
                 autocorrect: false,
@@ -65,26 +75,64 @@ class AuthFormState extends State<AuthForm> {
                   return null;
                 },
               )),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-                primary: Colors.pinkAccent, padding: EdgeInsets.all(16), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0))),
-            onPressed: () {
-              // Validate returns true if the form is valid, or false otherwise.
-              if (_formKey.currentState!.validate()) {
-                // If the form is valid, display a snackbar. In the real world,
-                // you'd often call a server or save the information in a database.
-                // ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Processing Data')));
-                Navigator.of(context).pushNamed(
-                  '/timeline',
-                  arguments: "Passage d'argument",
-                );
-              }
-            },
-            child: Text('CONNEXION'),
-          ),
+          _buildLoginButton(),
         ],
       ),
     );
+  }
+
+  Widget _buildLoginButton() {
+    ElevatedButton button = ElevatedButton(
+      style: ElevatedButton.styleFrom(
+          primary: Colors.pinkAccent, padding: EdgeInsets.all(16), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0))),
+      onPressed: () {
+        // Validate returns true if the form is valid, or false otherwise.
+        if (_formKey.currentState!.validate()) {
+          // If the form is valid, display a snackbar. In the real world,
+          // you'd often call a server or save the information in a database.
+          // ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Processing Data')));
+          navOnLogin(context);
+        }
+      },
+      child: Text('CONNEXION'),
+    );
+
+    if (_userFuture == null) {
+      return button;
+    } else {
+      return FutureBuilder<User>(
+        future: _userFuture,
+        builder: (context, snapshot) {
+          Widget buttonContent = button;
+
+          if (snapshot.connectionState != ConnectionState.done) {
+            buttonContent = Center(
+              child: CircularProgressIndicator(),
+            );
+          } else if (snapshot.hasData) {
+            user = snapshot.data!;
+            //Passage
+
+            // buttonContent = Login();
+          }
+
+          return Container(
+            child: buttonContent,
+          );
+        },
+      );
+    }
+  }
+
+  navOnLogin(context) async {
+    _userFuture = authLogin(emailController.text, passwordController.text);
+    setState(() {});
+    if (user != null) {
+      await Navigator.of(context).pushNamed(
+        '/timeline',
+        arguments: "Passage d'argument",
+      );
+    }
   }
 
   Widget _buildRegisterForm() {
@@ -176,6 +224,17 @@ class AuthFormState extends State<AuthForm> {
   }
 
   @override
+  void initState() {
+    // if (user != null) {
+    //   Navigator.of(context).pushNamed(
+    //     '/timeline',
+    //     arguments: "Passage d'argument",
+    //   );
+    // }
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     if (widget.type == FormType.login) {
       return _buildLoginForm();
@@ -184,5 +243,30 @@ class AuthFormState extends State<AuthForm> {
     } else {
       return Container();
     }
+  }
+}
+
+class Login extends StatefulWidget {
+  const Login();
+
+  @override
+  LoginState createState() {
+    return LoginState();
+  }
+}
+
+class LoginState extends State<Login> {
+  @override
+  void initState() {
+    Navigator.of(context).pushNamed(
+      '/timeline',
+      arguments: "Passage d'argument",
+    );
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
   }
 }
