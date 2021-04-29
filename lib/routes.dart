@@ -32,7 +32,7 @@ class RouteGenerator {
         return _notImplementedRoute("Messages");
       //Route Profile
       case '/profile':
-        return MaterialPageRoute(builder: (_) => ProfileView());
+        return MaterialPageRoute(builder: (_) => ProfileView(userId: args.toString()));
       //Route Settings
       case '/settings':
         return _notImplementedRoute("Paramètres");

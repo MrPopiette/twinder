@@ -1,25 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:twinder/models/user.dart';
+import 'package:twinder/network/user_network.dart';
 
-class ProfileView extends StatelessWidget {
-  final User? user;
+class ProfileView extends StatefulWidget {
+  final String userId;
 
   ProfileView({
     Key? key,
-    this.user,
+    required this.userId,
   }) : super(key: key);
 
-  Widget _buildProfileContent() {
+  @override
+  ProfileViewState createState() {
+    return ProfileViewState();
+  }
+}
+
+class ProfileViewState extends State<ProfileView> {
+  late Future<User> _userFuture;
+
+  Widget _buildProfileContent(User user) {
     return Container(
       child: SingleChildScrollView(
         child: Column(
-          children: [_buildUserDetails(), _buildUserPosts()],
+          children: [_buildUserDetails(user), _buildUserPosts()],
         ),
       ),
     );
   }
 
-  Widget _buildUserDetails() {
+  Widget _buildUserDetails(User user) {
     return Container(
       height: 416,
       alignment: Alignment.center,
@@ -42,7 +52,7 @@ class ProfileView extends StatelessWidget {
           Padding(
             padding: EdgeInsets.all(12),
             child: Text(
-              "Utilisateur",
+              "${user.firstName} ${user.lastName} ",
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 24,
@@ -128,6 +138,12 @@ class ProfileView extends StatelessWidget {
   }
 
   @override
+  void initState() {
+    _userFuture = getUserById(widget.userId);
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -141,7 +157,28 @@ class ProfileView extends StatelessWidget {
           ),
         ],
       ),
-      body: _buildProfileContent(),
+      // body: _buildProfileContent(),
+      body: FutureBuilder<User>(
+        future: _userFuture,
+        builder: (context, snapshot) {
+          Widget content;
+
+          if (snapshot.connectionState != ConnectionState.done) {
+            content = Center(
+              child: CircularProgressIndicator(),
+            );
+          } else if (snapshot.hasData) {
+            User? user = snapshot.data;
+            content = _buildProfileContent(user!);
+          } else {
+            content = Container();
+          }
+
+          return Container(
+            child: content,
+          );
+        },
+      ),
     );
   }
 }

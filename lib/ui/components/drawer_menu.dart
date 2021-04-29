@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 
+import 'package:twinder/globals.dart' as globals;
+
 class DrawerMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    String firstName = globals.loggedUser!.firstName;
+    String lastName = globals.loggedUser!.lastName;
+
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
@@ -28,7 +33,7 @@ class DrawerMenu extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    "Utilisateur",
+                    "$firstName $lastName",
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 24,
@@ -67,7 +72,10 @@ class DrawerMenu extends StatelessWidget {
             leading: Icon(Icons.person),
             title: Text('Profil'),
             onTap: () {
-              Navigator.of(context).pushNamed('/profile');
+              Navigator.of(context).pushNamed(
+                '/profile',
+                arguments: (globals.loggedUser!.idUser).toString(),
+              );
             },
           ),
           ListTile(
