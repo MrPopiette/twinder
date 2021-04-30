@@ -1,6 +1,6 @@
 class Post {
   final int idPost;
-  final String idSender;
+  final int idSender;
   final String content;
   final String date;
   final String? image;

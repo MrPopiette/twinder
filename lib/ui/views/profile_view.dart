@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:twinder/models/user.dart';
 import 'package:twinder/network/user_network.dart';
+import 'package:twinder/ui/components/timeline.dart';
 
 class ProfileView extends StatefulWidget {
   final String userId;
@@ -23,7 +24,7 @@ class ProfileViewState extends State<ProfileView> {
     return Container(
       child: SingleChildScrollView(
         child: Column(
-          children: [_buildUserDetails(user), _buildUserPosts()],
+          children: [_buildUserDetails(user), _buildUserPosts(user)],
         ),
       ),
     );
@@ -110,9 +111,9 @@ class ProfileViewState extends State<ProfileView> {
     );
   }
 
-  Widget _buildUserPosts() {
+  Widget _buildUserPosts(User user) {
     return Container(
-      height: 100,
+      height: 320,
       child: DefaultTabController(
         length: 2,
         child: Column(
@@ -126,8 +127,8 @@ class ProfileViewState extends State<ProfileView> {
             Expanded(
               child: TabBarView(
                 children: [
-                  Container(),
-                  Container(),
+                  Timeline(type: TimelineType.from, userId: (user.idUser).toString()),
+                  Timeline(type: TimelineType.liked, userId: (user.idUser).toString()),
                 ],
               ),
             )

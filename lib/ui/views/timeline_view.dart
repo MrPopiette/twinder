@@ -3,6 +3,7 @@ import 'package:flutter_session/flutter_session.dart';
 import 'package:twinder/ui/components/drawer_menu.dart';
 
 import 'package:twinder/globals.dart' as globals;
+import 'package:twinder/ui/components/timeline.dart';
 
 class TimelineView extends StatelessWidget {
   TimelineView({
@@ -13,22 +14,11 @@ class TimelineView extends StatelessWidget {
     var idUser = globals.loggedUser!.idUser;
 
     return Container(
-      child: Align(
-        alignment: Alignment.center,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text("Timeline Screen"),
-            Text("$idUser"),
-            _buildPost(),
-          ],
-        ),
+      child: Timeline(
+        type: TimelineType.general,
+        userId: idUser.toString(),
       ),
     );
-  }
-
-  Widget _buildPost() {
-    return Container();
   }
 
   @override
