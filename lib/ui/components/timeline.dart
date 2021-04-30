@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:twinder/models/post.dart';
 
 enum TimelineType { general, from, liked }
-List<Post> sample = [new Post(), new Post(), new Post(), new Post(), new Post()];
 
 class Timeline extends StatefulWidget {
   const Timeline({
